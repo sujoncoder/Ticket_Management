@@ -1,1 +1,6 @@
-export const DB_URL = "mongodb+srv://<db_username>:<db_password>@cluster0.slprllm.mongodb.net/"
+import dotenv from "dotenv";
+dotenv.config();
+
+
+export const PORT = process.env.SERVER_PORT || 3001;
+export const DB_URL = process.env.DB_URI;
