@@ -30,7 +30,6 @@ This system is built using **Node.js**, **Express.js**, and **MongoDB** with **M
 - **Authentication**: JWT (JSON Web Tokens)
 - **Password Hashing**: bcryptjs
 - **Error Handling**: http-errors
-- **Validation**: Express-validator
 
 ## Project Structure
 
@@ -55,5 +54,7 @@ This system is built using **Node.js**, **Express.js**, and **MongoDB** with **M
 - **GET /tickets**: View available tickets for specific buses
 - **POST /tickets/purchase**: Purchase a ticket for a specific bus and time
 
+
+[Postman API doc](https://documenter.getpostman.com/view/29092897/2sAYBXBWYj)
 
 ## Happy Codding 👩‍💻 </>
