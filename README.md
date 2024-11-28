@@ -55,6 +55,6 @@ This system is built using **Node.js**, **Express.js**, and **MongoDB** with **M
 - **POST /tickets/purchase**: Purchase a ticket for a specific bus and time
 
 
-[Postman API doc](https://documenter.getpostman.com/view/29092897/2sAYBXBWYj)
+[Postman API doc link: ](https://documenter.getpostman.com/view/29092897/2sAYBXBWYj)     https://documenter.getpostman.com/view/29092897/2sAYBXBWYj
 
 ## Happy Codding 👩‍💻 </>
