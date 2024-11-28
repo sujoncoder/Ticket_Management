@@ -13,7 +13,7 @@ const busSchema = new mongoose.Schema({
     capacity: {
         type: Number,
         required: [true, "Capacity number is required."],
-    }
+    },
 }, { timestamps: true });
 
 const Bus = mongoose.model("Bus", busSchema);

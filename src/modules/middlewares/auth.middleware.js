@@ -4,38 +4,30 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/constants.js";
 
 
-
-
-// IS_LOGGED_IN MIDDLEWARE
-export const isLoggedIn = async (req, res, next) => {
+// AUTHENTICATE USER MIDDLEWARE
+export const authenticateUser = (req, res, next) => {
     try {
-        const authToken = req.cookies.authToken;
-        if (!authToken) {
-            throw createError(401, "Token not found. Please login")
+        // Extract token from request cookies
+        const token = req.cookies.authToken;
+        if (!token) {
+            throw createError(401, "Authentication token is missing. Please login first.")
         };
 
-        const decoded = await jwt.verify(authToken, JWT_SECRET)
-
+        // Verify token using jwt secret
+        const decoded = jwt.verify(token, JWT_SECRET);
         if (!decoded) {
-            throw createError(401, "Invalid access token. Please login again")
-        }
-        req.user = decoded.user
-        next()
-    } catch (error) {
-        return next(error)
-    }
-};
+            throw createError(401, "Invalid or expired token.")
+        };
 
+        // Set user info to the request user
+        req.user = {
+            id: decoded.id,
+            email: decoded.email,
+            role: decoded.role
+        };
 
-
-// IS_ADMIN MIDDLEWARE
-export const isAdmin = async (req, res, next) => {
-    try {
-        if (!req.user.role === "admin") {
-            throw createError(403, "Forbidden. You must be an admin to access this resource")
-        }
         next();
     } catch (error) {
-        return next(error)
+        next(createError(401, error.message || "Unauthorized access"))
     }
 };

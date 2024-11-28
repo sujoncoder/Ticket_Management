@@ -8,7 +8,7 @@ export const successResponse = (res, { statusCode = 200, message = "Success", pa
 };
 
 
-// ERROR_RESPONSE HELPER
+// ERROR_RESPONSE
 export const errorResponse = (res, { statusCode = 500, message = "Internal Server Error" }) => {
     return res.status(statusCode).json({
         success: false,

@@ -22,6 +22,7 @@ export const register = async (req, res, next) => {
             throw createError(409, "User with this email already exists. Please login.");
         };
 
+        // Password hashed
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await User.create({
@@ -58,14 +59,14 @@ export const login = async (req, res, next) => {
             throw createError(400, "User not found. Please register first.");
         };
 
+        // User password compare to hashed password
         const isValidPassword = await bcrypt.compare(password, user.password);
-
 
         if (!isValidPassword) {
             throw createError(400, "Invalid email or password.");
         };
 
-        // generate JWT token
+        // Generate JWT token
         const token = jwt.sign(
             {
                 id: user._id,
@@ -76,7 +77,7 @@ export const login = async (req, res, next) => {
             { expiresIn: "1d" }
         );
 
-        // set cookie
+        // Set cookie
         res.cookie("authToken", token, {
             maxAge: 7 * 24 * 60 * 60 * 1000, // for 7 days
             httpOnly: true,
@@ -84,7 +85,6 @@ export const login = async (req, res, next) => {
             sameSite: "none"
         });
 
-        // Send success response
         return successResponse(res, {
             statusCode: 200,
             message: "User login successfully.",
@@ -99,6 +99,7 @@ export const login = async (req, res, next) => {
 // LOGOUT CONTROLLER
 export const logout = async (req, res, next) => {
     try {
+        // Access login token
         const token = req.cookies.authToken;
 
         if (!token) {

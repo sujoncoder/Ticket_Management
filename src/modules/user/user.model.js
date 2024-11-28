@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+
 
 // EMAIL REGEX
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
 
 // USER SCHEMA
 const userSchema = new mongoose.Schema({

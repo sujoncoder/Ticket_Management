@@ -7,6 +7,8 @@ import rateLimit from "express-rate-limit";
 import { errorResponse } from "./modules/utils/response.js";
 import authRouter from "./modules/auth/auth.routes.js";
 import adminRouter from "./modules/admin/admin.routes.js";
+import busRouter from "./modules/bus/bus.routes.js";
+import ticketRouter from "./modules/ticket/ticket.routes.js";
 
 
 // RATE LIMITER
@@ -31,7 +33,8 @@ app.use(morgan("dev"));
 // APPLICATION LAYER MIDDLEWARE ==> ROUTING
 app.use("/auth", authRouter);
 app.use("/admin", adminRouter);
-
+app.use("/buses", busRouter);
+app.use("/tickets", ticketRouter);
 
 
 // HANDLE CLIENT ERROR

@@ -15,7 +15,6 @@ export const addBus = async (req, res, next) => {
         };
 
         const busExists = await Bus.findOne({ name });
-
         if (busExists) {
             throw createError(400, "Bus with this name already exists.");
         };
@@ -67,7 +66,6 @@ export const deleteBus = async (req, res, next) => {
         const { id } = req.params;
 
         const deleteBus = await Bus.findByIdAndDelete(id, { new: true });
-
         if (!deleteBus) {
             throw createError(404, "Bus not found.");
         };
@@ -84,7 +82,7 @@ export const deleteBus = async (req, res, next) => {
 };
 
 
-// -----------------HERE IS TICKET ------------
+// ----------------- HERE IS TICKET ------------
 
 // ADMIN CREATE A NEW BUS
 export const createTicket = async (req, res, next) => {
