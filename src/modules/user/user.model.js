@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "User password is required."],
         minLength: [6, "The length of user password can be minimum 6 characters"],
-        set: (v) => bcrypt.hashSync(v, bcrypt.genSaltSync(10))
     },
     role: {
         type: String,

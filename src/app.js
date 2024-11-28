@@ -1,9 +1,12 @@
 import express from "express";
 import morgan from "morgan";
+import cookieParser from "cookie-parser"
 import createHttpError from "http-errors";
 import rateLimit from "express-rate-limit";
 
 import { errorResponse } from "./modules/utils/response.js";
+import authRouter from "./modules/auth/auth.routes.js";
+import adminRouter from "./modules/admin/admin.routes.js";
 
 
 // RATE LIMITER
@@ -18,6 +21,7 @@ const rateLimiter = rateLimit({
 const app = express();
 
 // APPLICATION LAYER MIDDLEWARE
+app.use(cookieParser());
 app.use(rateLimiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +29,8 @@ app.use(morgan("dev"));
 
 
 // APPLICATION LAYER MIDDLEWARE ==> ROUTING
-// app.use("/api/v1/users", userRouter)
+app.use("/auth", authRouter);
+app.use("/admin", adminRouter);
 
 
 

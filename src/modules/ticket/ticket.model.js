@@ -14,8 +14,8 @@ const ticketSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Tcket price is required."],
     },
-    time: {
-        type: Date,
+    timeSlot: {
+        type: String,
         required: true,
     },
     status: {
